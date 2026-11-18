@@ -1,1 +1,285 @@
-m
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmed Ata — DevOps & Infrastructure Engineer</title>
+<meta name="description" content="Ahmed Ata — DevOps & Infrastructure Engineer. Azure, AWS, Kubernetes, Terraform, GitOps and DevSecOps for government, banking and insurance clients.">
+<meta property="og:title" content="Ahmed Ata — DevOps & Infrastructure Engineer">
+<meta property="og:description" content="Production DevOps across Azure, AWS, Kubernetes, OpenShift and Docker Swarm. AZ-400 · AZ-104 · Terraform Associate.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b1220'/><text x='50%25' y='56%25' text-anchor='middle' font-family='monospace' font-size='28' fill='%2338bdf8' font-weight='700'>AA</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070b14; --bg2:#0c1322; --card:#0f1829; --line:#1c2a42;
+  --ink:#e6edf7; --muted:#93a3bb; --accent:#38bdf8; --accent2:#818cf8; --ok:#34d399;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(7,11,20,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--accent)}
+.logo span{color:var(--muted)}
+.links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+@media(max-width:720px){.links{display:none}}
+
+/* hero */
+.hero{position:relative;padding:96px 0 72px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-40% -20% auto auto;width:700px;height:700px;background:radial-gradient(circle,rgba(56,189,248,.18),transparent 60%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-200px;bottom:-300px;width:600px;height:600px;background:radial-gradient(circle,rgba(129,140,248,.14),transparent 60%);pointer-events:none}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.25;mask-image:radial-gradient(ellipse at 30% 20%,#000 30%,transparent 75%)}
+.hero .wrap{position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ok);background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);padding:6px 12px;border-radius:999px}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.05;font-weight:800;letter-spacing:-1.5px;margin:22px 0 14px}
+h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:640px}
+.term{margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted)}
+.term b{color:var(--accent);font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid var(--line);transition:.2s}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#06101d;border:none}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn svg{width:18px;height:18px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat b{display:block;font-size:28px;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:13px;color:var(--muted)}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* sections */
+section{padding:72px 0}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:8px}
+h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;letter-spacing:-.8px;margin-bottom:28px}
+
+/* cases */
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:820px){.cases{grid-template-columns:1fr}}
+.case{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;transition:.25s;position:relative;overflow:hidden}
+.case::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.7}
+.case:hover{transform:translateY(-4px);border-color:#2a3d5e}
+.where{font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.case h3{font-size:19px;margin:6px 0 10px;line-height:1.3}
+.case p{color:var(--muted);font-size:14.5px}
+.case ul{margin:10px 0 0 18px;font-size:14.5px}
+.case li{margin-bottom:4px}
+.out{margin-top:14px;font-size:14px;padding:10px 12px;border-radius:10px;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.18)}
+.out b{color:var(--ok)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-size:12px;padding:3px 10px;border-radius:999px;background:rgba(56,189,248,.08);color:var(--accent);border:1px solid rgba(56,189,248,.2)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.skills{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.skills{grid-template-columns:1fr}}
+.sk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.sk h4{font-size:14px;margin-bottom:10px;color:var(--ink)}
+
+/* timeline */
+.tl{border-left:2px solid var(--line);margin-left:6px}
+.item{position:relative;padding:0 0 30px 26px}
+.item::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.item h3{font-size:18px}
+.item .meta{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.item ul{margin-left:18px;color:var(--muted);font-size:14.5px}
+
+/* certs */
+.certs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:820px){.certs{grid-template-columns:1fr 1fr}}
+.cert{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;transition:.2s;display:block}
+.cert:hover{border-color:var(--accent)}
+.cert b{display:block;font-size:15px}
+.cert span{font-size:13px;color:var(--muted)}
+.cert.prog{border-style:dashed}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:820px){.projects{grid-template-columns:1fr}}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:block;transition:.2s}
+.proj:hover{border-color:var(--accent)}
+.proj b{display:flex;justify-content:space-between;gap:8px}
+.proj b i{font-style:normal;color:var(--accent)}
+.proj p{font-size:14px;color:var(--muted);margin-top:6px}
+
+/* contact */
+.contact{text-align:center;background:linear-gradient(180deg,var(--bg),var(--bg2));border-top:1px solid var(--line)}
+.contact p{color:var(--muted);max-width:560px;margin:0 auto 26px}
+.contact .cta{justify-content:center}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 36px}
+
+.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
+.reveal.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#" class="logo">~/ahmed<span>-ata</span></a>
+  <div class="links"><a href="#work">Work</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#certs">Certifications</a><a href="#contact">Contact</a></div>
+</div></nav>
+
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <span class="badge"><i></i> Open to full-time, remote & freelance roles</span>
+    <h1>Ahmed Ata<br><span class="grad">DevOps & Infrastructure Engineer</span></h1>
+    <p class="lead">I build, secure and run production platforms for UAE government, banking and insurance clients across Azure, AWS, Kubernetes, OpenShift, Docker Swarm and Windows Server, from client kick-off to go-live.</p>
+    <div class="term">$ <b>whoami</b> → automation · GitOps · DevSecOps · FinOps</div>
+    <div class="cta">
+      <a class="btn primary" href="Ahmed_Ata_CV.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>Download CV</a>
+      <a class="btn" href="#work">View case studies</a>
+      <a class="btn" href="https://www.linkedin.com/in/ahmed-ata-691904194/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21H9z"/></svg>LinkedIn</a>
+      <a class="btn" href="https://github.com/ahmed2ata" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>GitHub</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>2 yrs</b><span>production DevOps</span></div>
+      <div class="stat"><b>7+</b><span>enterprise &amp; government clients</span></div>
+      <div class="stat"><b>~15 min</b><span>releases, down from hours</span></div>
+      <div class="stat"><b>AZ-400</b><span>DevOps Engineer Expert</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="work"><div class="wrap">
+  <div class="kicker">// selected work</div>
+  <h2>Case studies</h2>
+  <div class="cases">
+
+    <article class="case reveal">
+      <div class="where">Banking · Inspire · 2025</div>
+      <h3>CI/CD & GitOps platform for Egyptian Banks Company</h3>
+      <p>Manual releases and configuration drift across multiple Kubernetes environments in a regulated banking setting.</p>
+      <ul><li>Automated container builds with ACS security scanning and Quay publishing</li><li>Argo CD GitOps keeping QC, UAT and STG clusters in sync with Git</li></ul>
+      <div class="out"><b>Outcome:</b> every environment matches Git, with no configuration drift and every image scanned.</div>
+      <div class="tags"><span class="tag">Kubernetes</span><span class="tag">Argo CD</span><span class="tag">ACS</span><span class="tag">Quay</span><span class="tag">Helm</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">UAE Government · Sword · 2026</div>
+      <h3>Production Docker Swarm platform: Adaa</h3>
+      <p>Hardcoded secrets and silent monitoring gaps on a multi-node government production cluster.</p>
+      <ul><li>Moved JWT, encryption, RabbitMQ and TLS secrets into Docker Swarm secrets via GitHub Actions</li><li>Prometheus + Grafana stack with Slack alerting</li><li>Root-caused cross-node failures to an Azure VXLAN MTU mismatch (1450 vs 1500)</li></ul>
+      <div class="out"><b>Outcome:</b> no secrets left in config files, plus full cross-node monitoring.</div>
+      <div class="tags"><span class="tag">Docker Swarm</span><span class="tag">Secrets</span><span class="tag">Prometheus</span><span class="tag">Grafana</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">SaaS products · Sword · 2026</div>
+      <h3>Azure Container Apps delivery & cost optimization</h3>
+      <p>A pipeline outage from an expired service principal secret, and dev/test environments running at production cost.</p>
+      <ul><li>GitHub Actions to Container Apps using OIDC federated credentials, with no stored secrets</li><li>Right-sizing from Azure Advisor and metrics: scale-to-zero, Burstable PostgreSQL</li><li>Azure Automation runbooks to stop and start non-production resources on a schedule</li></ul>
+      <div class="out"><b>Outcome:</b> no more outages from expired secrets, lower non-production spend, and a weekly cost report for every DevOps team.</div>
+      <div class="tags"><span class="tag">Container Apps</span><span class="tag">OIDC</span><span class="tag">FinOps</span><span class="tag">PowerShell</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">UAE Government · Sword · 2026</div>
+      <h3>PMS on Windows Server for EHS & Ministry of Economy</h3>
+      <p>Enterprise performance-management product delivered into client-hosted, on-premises government environments.</p>
+      <ul><li>IIS + SQL Server deployments led from client kick-off to go-live</li><li>Fixed penetration-test findings, including a duplicate HSTS header injected by both IIS and the F5 BIG-IP</li></ul>
+      <div class="out"><b>Outcome:</b> stable production delivery for critical public-sector systems.</div>
+      <div class="tags"><span class="tag">IIS</span><span class="tag">SQL Server</span><span class="tag">F5</span><span class="tag">Pen-test fixes</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">Banking · Inspire · 2025</div>
+      <h3>Zero-touch IBM BAW releases for NXT Bank</h3>
+      <p>Slow, manual multi-hour releases of business-process applications on OpenShift.</p>
+      <ul><li>Bamboo pipeline with SonarQube SAST, OpenShift deployment and Katalon regression testing</li><li>Automatic rollback to the last stable version on failure</li></ul>
+      <div class="out"><b>Outcome:</b> releases went from several hours to about 15 minutes, with zero manual steps.</div>
+      <div class="tags"><span class="tag">OpenShift</span><span class="tag">Bamboo</span><span class="tag">SonarQube</span><span class="tag">Katalon</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">Company-wide · Sword · 2026</div>
+      <h3>DevSecOps scanning program</h3>
+      <p>No consistent security gate across products shipped to government clients.</p>
+      <ul><li>Own and lead SonarQube, Checkmarx One and Trivy (SAST, SCA, container images)</li><li>Work with developers to fix findings from scans and client pen tests</li></ul>
+      <div class="out"><b>Outcome:</b> security checks built into delivery, not left until audit time.</div>
+      <div class="tags"><span class="tag">SonarQube</span><span class="tag">Checkmarx</span><span class="tag">Trivy</span><span class="tag">SAST/SCA</span></div>
+    </article>
+
+  </div>
+</div></section>
+
+<section id="skills" style="background:var(--bg2)"><div class="wrap">
+  <div class="kicker">// toolbox</div>
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="sk reveal"><h4>Cloud</h4><div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Container Apps</span><span class="tag">AKS</span><span class="tag">Key Vault</span></div></div>
+    <div class="sk reveal"><h4>Containers & Orchestration</h4><div class="tags"><span class="tag">Docker</span><span class="tag">Docker Swarm</span><span class="tag">Kubernetes</span><span class="tag">OpenShift</span><span class="tag">Helm</span></div></div>
+    <div class="sk reveal"><h4>CI/CD & GitOps</h4><div class="tags"><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span><span class="tag">Jenkins</span><span class="tag">Bamboo</span><span class="tag">Argo CD</span></div></div>
+    <div class="sk reveal"><h4>Infrastructure as Code</h4><div class="tags"><span class="tag">Terraform</span><span class="tag">Ansible</span></div></div>
+    <div class="sk reveal"><h4>DevSecOps</h4><div class="tags"><span class="tag">SonarQube</span><span class="tag">Checkmarx</span><span class="tag">Trivy</span><span class="tag">OIDC</span><span class="tag">RBAC</span></div></div>
+    <div class="sk reveal"><h4>Observability & Ops</h4><div class="tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span><span class="tag">Linux</span><span class="tag">IIS</span><span class="tag">Nginx</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">Bash</span><span class="tag">PowerShell</span></div></div>
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <div class="kicker">// career</div>
+  <h2>Experience</h2>
+  <div class="tl">
+    <div class="item reveal"><h3>DevOps & Infrastructure Engineer · Sword</h3><div class="meta">Feb 2026 – Present</div>
+      <ul><li>Deliver Adaa, SFD and PMS to UAE government clients (EHS, Sharjah Finance Department, Ajman DODA, Ministry of Economy)</li><li>Own company AWS & Azure infrastructure and GitHub Actions CI/CD</li><li>Lead DevSecOps scanning, cloud cost optimization and M365 / Entra ID administration</li></ul></div>
+    <div class="item reveal"><h3>DevOps Engineer · Inspire for Solutions Development</h3><div class="meta">Dec 2024 – Jan 2026</div>
+      <ul><li>GitOps platform for Egyptian Banks Company, Azure DevOps pipelines for GIG Insurance, and zero-touch OpenShift releases for NXT Bank</li></ul></div>
+    <div class="item reveal" style="padding-bottom:0"><h3>B.Sc. Electronics & Communication Engineering</h3><div class="meta">Mansoura University · 2018 – 2023</div></div>
+  </div>
+</div></section>
+
+<section id="certs" style="background:var(--bg2)"><div class="wrap">
+  <div class="kicker">// verified</div>
+  <h2>Certifications</h2>
+  <div class="certs">
+    <a class="cert reveal" href="https://learn.microsoft.com/api/credentials/share/en-us/AhmedAbdelMaaboud-0824/ED9F303801BD21D4?sharingId=BFF6FCE839F19B9A" target="_blank" rel="noopener"><b>AZ-400</b><span>Microsoft DevOps Engineer Expert</span></a>
+    <a class="cert reveal" href="https://learn.microsoft.com/api/credentials/share/en-us/AhmedAbdelMaaboud-0824/ED9F303801BD21D4?sharingId=BFF6FCE839F19B9A" target="_blank" rel="noopener"><b>AZ-104</b><span>Azure Administrator Associate</span></a>
+    <a class="cert reveal" href="https://www.credly.com/badges/0c231256-0b49-4858-afbc-a316fe1218b6/public_url" target="_blank" rel="noopener"><b>Terraform Associate</b><span>HashiCorp Certified (003)</span></a>
+    <a class="cert reveal" href="https://www.credly.com/badges/35eef6fe-c61b-41a3-9435-686b9378273e/public_url" target="_blank" rel="noopener"><b>AWS Cloud Practitioner</b><span>Amazon Web Services</span></a>
+  </div>
+  <p style="color:var(--muted);font-size:14px;margin-top:14px" class="mono">→ in progress: AWS Solutions Architect – Associate (SAA-C03)</p>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <div class="kicker">// side projects</div>
+  <h2>Personal projects</h2>
+  <div class="projects">
+    <a class="proj reveal" href="https://github.com/ahmed2ata/aws-devops/blob/main/serverless_app/instructions" target="_blank" rel="noopener"><b>Serverless app on AWS <i>↗</i></b><p>Lambda (Node.js), DynamoDB and API Gateway with a custom domain and TLS.</p></a>
+    <a class="proj reveal" href="https://github.com/ahmed2ata/WeatherApp-K8S" target="_blank" rel="noopener"><b>WeatherApp microservices on Kubernetes <i>↗</i></b><p>StatefulSet MySQL, ClusterIP isolation and Ingress routing across auth, app and UI services.</p></a>
+    <a class="proj reveal" href="https://github.com/ahmed2ata/aws-devops/tree/main/modifiedscripts_for_multiple_environments" target="_blank" rel="noopener"><b>Multi-environment AWS provisioning <i>↗</i></b><p>A single parameterized Bash + AWS CLI script that builds VPC, subnets, ASG, ELB and Route 53.</p></a>
+    <div class="proj reveal"><b>Elastic VMware datacenter</b><p>ESXi with HA/DRS, a Kubernetes cluster provisioned by Ansible, Jenkins image builds and Terraform-managed VMs.</p></div>
+  </div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+  <div class="kicker">// let's talk</div>
+  <h2>Have a platform to build or run?</h2>
+  <p>Open to full-time roles across the Gulf, MENA and Egypt, plus remote and freelance DevOps work.</p>
+  <div class="cta">
+    <a class="btn primary" href="mailto:ataaa5637@gmail.com">ataaa5637@gmail.com</a>
+    <a class="btn" href="https://www.linkedin.com/in/ahmed-ata-691904194/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="Ahmed_Ata_CV.pdf" download>Download CV</a>
+  </div>
+</div></section>
+
+<footer>© <span id="y"></span> Ahmed Ata Abdel-Maaboud · Hosted on GitHub Pages</footer>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
