@@ -119,6 +119,19 @@ h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;letter-spacing:-.8px;margin-
 .contact .cta{justify-content:center}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 36px}
 
+code{font-family:'JetBrains Mono',monospace;font-size:.88em;background:rgba(56,189,248,.08);color:#bae6fd;padding:1px 5px;border-radius:5px}
+.case.wide{grid-column:1/-1}
+.case h5{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--accent);margin:14px 0 4px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.kpi{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.18);border-radius:10px;padding:10px}
+.kpi b{display:block;font-size:20px;color:var(--ok)}
+.kpi span{font-size:12.5px;color:var(--muted)}
+@media(max-width:720px){.kpis{grid-template-columns:1fr 1fr}}
+.clients{margin-top:28px}
+.clients small{display:block;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.clients div{display:flex;flex-wrap:wrap;gap:8px}
+.clients span{font-size:13.5px;padding:6px 12px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.sk p{font-size:14px;color:var(--muted)}
 .reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
 .reveal.on{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{animation:none!important;transition:none!important}}
@@ -146,9 +159,13 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 36px}
     </div>
     <div class="stats">
       <div class="stat"><b>2 yrs</b><span>production DevOps</span></div>
-      <div class="stat"><b>7+</b><span>enterprise &amp; government clients</span></div>
-      <div class="stat"><b>~15 min</b><span>releases, down from hours</span></div>
+      <div class="stat"><b>10+</b><span>government, banking &amp; insurance clients</span></div>
       <div class="stat"><b>AZ-400</b><span>DevOps Engineer Expert</span></div>
+      <div class="stat"><b>+3 certs</b><span>AZ-104 · AWS Cloud Practitioner · Terraform Associate</span></div>
+    </div>
+    <div class="clients">
+      <small>// UAE government clients delivered</small>
+      <div><span>Emirates Health Services (EHS)</span><span>Ministry of Economy</span><span>Fujairah Police</span><span>Sharjah Finance Department (SFD)</span><span>Ajman Ports &amp; Customs</span><span>DODA Ajman</span><span>SMC</span></div>
     </div>
   </div>
 </header>
@@ -159,39 +176,81 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 36px}
   <div class="cases">
 
     <article class="case reveal">
+      <div class="where">UAE Government · Sword · 2026</div>
+      <h3>End-to-end delivery platform for Emirates Health Services (EHS)</h3>
+      <p>One product, four environments, from our cloud dev environment to the client's air-gapped production, with nothing deployed by hand.</p>
+      <ul><li>Dev on Azure Container Apps, pre-prod on Azure VMs, 100% automated through GitHub Actions</li><li>Releases to the client's air-gapped pre-prod and production Linux servers running Docker Swarm</li><li>Administer the Windows SQL Server database servers: backups, restores and day-to-day administration</li><li>Full monitoring stack (Prometheus, Grafana, Loki) across every environment, with Slack alerting</li><li>Moved JWT, encryption, RabbitMQ and TLS secrets into Docker Swarm secrets, and root-caused cross-node failures to an Azure VXLAN MTU mismatch (1450 vs 1500)</li></ul>
+      <div class="out"><b>Outcome:</b> repeatable, fully automated releases from dev to air-gapped production, no secrets in config files, and one view of health across every environment.</div>
+      <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">Container Apps</span><span class="tag">Docker Swarm</span><span class="tag">Air-gapped</span><span class="tag">SQL Server</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">UAE Government · Sword · 2026</div>
+      <h3>Multi-tier PMS delivery on Windows Server</h3>
+      <p>Multi-tier PMS deployed into client-hosted, on-premises government environments for several clients: separate API, UI, database and public-portal servers running IIS and SQL Server, all over HTTPS.</p>
+      <ul><li>Multi-server topology running .NET Framework 4.8 and .NET 8 sites side by side on IIS, with a dedicated app pool per runtime</li><li>SNI-based HTTPS on a wildcard certificate, with scripted import, rebind and zero-downtime renewal across servers</li><li>SQL Server hardening (static ports, mixed-mode auth) with per-server firewall rules</li><li>Cross-server upload shares secured with computer-account (app pool) permissions</li><li>Fixed IIS 500.19 and 500.30 errors and pen-test findings, such as a duplicate HSTS header from IIS and F5</li></ul>
+      <div class="out"><b>Outcome:</b> stable, secure government go-lives and a repeatable deployment guide reused across clients.</div>
+      <div class="tags"><span class="tag">IIS</span><span class="tag">SQL Server</span><span class="tag">.NET 8</span><span class="tag">HTTPS/SNI</span><span class="tag">Firewall</span><span class="tag">Troubleshooting</span></div>
+    </article>
+
+    <article class="case wide reveal">
+      <div class="where">DevSecOps · Sword · 2026</div>
+      <h3>Enterprise multi-repo SonarQube scanning pipeline</h3>
+      <p>Bash and Python automation that scans 15 repositories across 2 GitHub organisations into a self-hosted SonarQube and publishes results to Confluence. It runs with one command per repo and needs no per-repo configuration.</p>
+      <h5>How it works</h5>
+      <p><code>orchestrator.sh</code> maps a repo to its SonarQube project through a JSON registry. It shallow-clones the branch with submodules and auto-detects the language (.NET/C#, JS/TS/Vue, Python or generic). It then runs the matching scanner, waits until the Compute Engine reports SUCCESS, publishes metrics and a full issue table to Confluence, and writes a full CSV export.</p>
+      <h5>Engineering problems solved</h5>
+      <ul>
+        <li><b>Hidden hotspots:</b> security hotspots were silently reporting zero. They now come from <code>/api/hotspots/search</code>, with TO_REVIEW tracked separately.</li>
+        <li><b>Wrong counts:</b> issue counts were off by 38% (2,500 reported vs 4,054 real) because they were taken from the page-capped list. They now come from <code>paging.total</code>, with pagination.</li>
+        <li><b>Stale reports:</b> a fixed <code>sleep 30</code> sometimes published the previous scan's numbers. It was replaced with Compute Engine task polling.</li>
+        <li><b>Discarded lint findings:</b> ESLint output was being thrown away. It's now wired in through <code>sonar.eslint.reportPaths</code> and makes up about 45% of findings on TypeScript projects.</li>
+        <li><b>Coverage gaps:</b> added guards against silently degraded TypeScript analysis, uninitialised submodules and failed uploads. Branch-suffixed project keys work around Community Edition, which has no branch analysis.</li>
+        <li><b>Scan-integrity check:</b> a <code>diagnose-coverage.sh</code> tool audits what a "green" scan actually covered.</li>
+      </ul>
+      <div class="kpis">
+        <div class="kpi"><b>260k</b><span>lines of code under continuous analysis</span></div>
+        <div class="kpi"><b>4,008</b><span>issues tracked across 6 languages</span></div>
+        <div class="kpi"><b>535</b><span>hidden Roslyn diagnostics surfaced, including 217 possible null dereferences</span></div>
+        <div class="kpi"><b>59%</b><span>false "quality improvement" caught: an incomplete scan, not better code</span></div>
+      </div>
+      <div class="tags"><span class="tag">SonarQube</span><span class="tag">Bash</span><span class="tag">Python</span><span class="tag">SonarScanner .NET</span><span class="tag">ESLint</span><span class="tag">Confluence API</span><span class="tag">Docker</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">UAE Government · Sword · 2026</div>
+      <h3>Container security remediation &amp; DevSecOps hardening</h3>
+      <p>Checkmarx One flagged 2,853 container findings in the Adaa stack. Almost all of them were in third-party base images rather than our own code.</p>
+      <ul><li>Moved .NET images to Ubuntu chiseled runtimes with Alpine SDK builds, and upgraded RabbitMQ, Loki, Prometheus and node-exporter</li><li>Replaced the deprecated Promtail and cAdvisor with Grafana Alloy</li><li>Tested every change locally before merge, with revert-based rollbacks and a deployment order for the team</li></ul>
+      <div class="out"><b>Outcome:</b> findings cut from 2,853 to 482 (−83%) with application behaviour unchanged. The remaining findings are documented as waiting on vendor releases.</div>
+      <div class="tags"><span class="tag">Checkmarx One</span><span class="tag">Docker</span><span class="tag">Grafana Alloy</span><span class="tag">DevSecOps</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">IIS delivery · Sword · 2026</div>
+      <h3>Automated CI/CD for IIS services on Azure VMs</h3>
+      <p>Deployments to dev and pre-prod meant manually publishing and copying files, with no rollback and no audit trail.</p>
+      <ul><li>GitHub Actions builds on hosted runners and deploys through a self-hosted Windows runner, deploying only the services that changed</li><li>A PowerShell deploy script backs up the full site, deploys without overwriting config, runs an HTTP health check, and restores automatically on failure</li><li>Pre-prod releases are promoted by an annotated git tag recording the approver and ticket, gated by environment rules, with Slack notifications per environment</li></ul>
+      <div class="out"><b>Outcome:</b> developers release without server access, failed deploys roll themselves back, and every pre-prod release has a recorded approver.</div>
+      <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">IIS</span><span class="tag">PowerShell</span><span class="tag">Release automation</span></div>
+    </article>
+
+    <article class="case reveal">
+      <div class="where">Multi-subscription Azure · Sword · 2026</div>
+      <h3>Azure FinOps review across 5 subscriptions</h3>
+      <p>Runaway log ingestion, idle plans, orphaned resources, and stop schedules that had never actually run.</p>
+      <ul><li>Read-only audits with the Azure CLI, Cost Management API, Azure Monitor and KQL to find waste</li><li>Fixed log ingestion with Log Analytics daily caps, and changed PostgreSQL <code>log_statement</code> from ALL to ddl with no restart</li><li>Removed idle plans and orphaned disks, IPs and VMs, and fixed Automation runbooks that had never run</li></ul>
+      <div class="out"><b>Outcome:</b> about 29% lower Azure spend (~$880/month, ~$10.5K/year), confirmed against actual billing data, with no production downtime.</div>
+      <div class="tags"><span class="tag">FinOps</span><span class="tag">Azure CLI</span><span class="tag">KQL</span><span class="tag">Azure Automation</span><span class="tag">Log Analytics</span></div>
+    </article>
+
+    <article class="case reveal">
       <div class="where">Banking · Inspire · 2025</div>
-      <h3>CI/CD & GitOps platform for Egyptian Banks Company</h3>
-      <p>Manual releases and configuration drift across multiple Kubernetes environments in a regulated banking setting.</p>
-      <ul><li>Automated container builds with ACS security scanning and Quay publishing</li><li>Argo CD GitOps keeping QC, UAT and STG clusters in sync with Git</li></ul>
-      <div class="out"><b>Outcome:</b> every environment matches Git, with no configuration drift and every image scanned.</div>
-      <div class="tags"><span class="tag">Kubernetes</span><span class="tag">Argo CD</span><span class="tag">ACS</span><span class="tag">Quay</span><span class="tag">Helm</span></div>
-    </article>
-
-    <article class="case reveal">
-      <div class="where">UAE Government · Sword · 2026</div>
-      <h3>Production Docker Swarm platform: Adaa</h3>
-      <p>Hardcoded secrets and silent monitoring gaps on a multi-node government production cluster.</p>
-      <ul><li>Moved JWT, encryption, RabbitMQ and TLS secrets into Docker Swarm secrets via GitHub Actions</li><li>Prometheus + Grafana stack with Slack alerting</li><li>Root-caused cross-node failures to an Azure VXLAN MTU mismatch (1450 vs 1500)</li></ul>
-      <div class="out"><b>Outcome:</b> no secrets left in config files, plus full cross-node monitoring.</div>
-      <div class="tags"><span class="tag">Docker Swarm</span><span class="tag">Secrets</span><span class="tag">Prometheus</span><span class="tag">Grafana</span></div>
-    </article>
-
-    <article class="case reveal">
-      <div class="where">SaaS products · Sword · 2026</div>
-      <h3>Azure Container Apps delivery & cost optimization</h3>
-      <p>A pipeline outage from an expired service principal secret, and dev/test environments running at production cost.</p>
-      <ul><li>GitHub Actions to Container Apps using OIDC federated credentials, with no stored secrets</li><li>Right-sizing from Azure Advisor and metrics: scale-to-zero, Burstable PostgreSQL</li><li>Azure Automation runbooks to stop and start non-production resources on a schedule</li></ul>
-      <div class="out"><b>Outcome:</b> no more outages from expired secrets, lower non-production spend, and a weekly cost report for every DevOps team.</div>
-      <div class="tags"><span class="tag">Container Apps</span><span class="tag">OIDC</span><span class="tag">FinOps</span><span class="tag">PowerShell</span></div>
-    </article>
-
-    <article class="case reveal">
-      <div class="where">UAE Government · Sword · 2026</div>
-      <h3>PMS on Windows Server for EHS & Ministry of Economy</h3>
-      <p>Enterprise performance-management product delivered into client-hosted, on-premises government environments.</p>
-      <ul><li>IIS + SQL Server deployments led from client kick-off to go-live</li><li>Fixed penetration-test findings, including a duplicate HSTS header injected by both IIS and the F5 BIG-IP</li></ul>
-      <div class="out"><b>Outcome:</b> stable production delivery for critical public-sector systems.</div>
-      <div class="tags"><span class="tag">IIS</span><span class="tag">SQL Server</span><span class="tag">F5</span><span class="tag">Pen-test fixes</span></div>
+      <h3>Automated CI/CD &amp; GitOps platform on OpenShift for Egyptian Banks Company</h3>
+      <p>Manual releases and configuration drift across multiple OpenShift environments in a regulated banking setting.</p>
+      <ul><li>Automated container builds with ACS (Advanced Cluster Security) scanning and Quay image publishing</li><li>Argo CD GitOps keeping the QC, UAT and STG OpenShift clusters in sync with Git</li></ul>
+      <div class="out"><b>Outcome:</b> fully automated delivery, every environment matching Git with no drift, and every image scanned before release.</div>
+      <div class="tags"><span class="tag">OpenShift</span><span class="tag">Argo CD</span><span class="tag">ACS</span><span class="tag">Quay</span><span class="tag">GitOps</span></div>
     </article>
 
     <article class="case reveal">
@@ -203,15 +262,6 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 36px}
       <div class="tags"><span class="tag">OpenShift</span><span class="tag">Bamboo</span><span class="tag">SonarQube</span><span class="tag">Katalon</span></div>
     </article>
 
-    <article class="case reveal">
-      <div class="where">Company-wide · Sword · 2026</div>
-      <h3>DevSecOps scanning program</h3>
-      <p>No consistent security gate across products shipped to government clients.</p>
-      <ul><li>Own and lead SonarQube, Checkmarx One and Trivy (SAST, SCA, container images)</li><li>Work with developers to fix findings from scans and client pen tests</li></ul>
-      <div class="out"><b>Outcome:</b> security checks built into delivery, not left until audit time.</div>
-      <div class="tags"><span class="tag">SonarQube</span><span class="tag">Checkmarx</span><span class="tag">Trivy</span><span class="tag">SAST/SCA</span></div>
-    </article>
-
   </div>
 </div></section>
 
@@ -219,12 +269,19 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 36px}
   <div class="kicker">// toolbox</div>
   <h2>Skills</h2>
   <div class="skills">
-    <div class="sk reveal"><h4>Cloud</h4><div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Container Apps</span><span class="tag">AKS</span><span class="tag">Key Vault</span></div></div>
-    <div class="sk reveal"><h4>Containers & Orchestration</h4><div class="tags"><span class="tag">Docker</span><span class="tag">Docker Swarm</span><span class="tag">Kubernetes</span><span class="tag">OpenShift</span><span class="tag">Helm</span></div></div>
-    <div class="sk reveal"><h4>CI/CD & GitOps</h4><div class="tags"><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span><span class="tag">Jenkins</span><span class="tag">Bamboo</span><span class="tag">Argo CD</span></div></div>
-    <div class="sk reveal"><h4>Infrastructure as Code</h4><div class="tags"><span class="tag">Terraform</span><span class="tag">Ansible</span></div></div>
-    <div class="sk reveal"><h4>DevSecOps</h4><div class="tags"><span class="tag">SonarQube</span><span class="tag">Checkmarx</span><span class="tag">Trivy</span><span class="tag">OIDC</span><span class="tag">RBAC</span></div></div>
-    <div class="sk reveal"><h4>Observability & Ops</h4><div class="tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span><span class="tag">Linux</span><span class="tag">IIS</span><span class="tag">Nginx</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">Bash</span><span class="tag">PowerShell</span></div></div>
+    <div class="sk reveal"><h4>Cloud</h4><div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span></div></div>
+    <div class="sk reveal"><h4>OS</h4><div class="tags"><span class="tag">Linux (Admin 1 &amp; 2)</span><span class="tag">Windows Server</span></div></div>
+    <div class="sk reveal"><h4>Configuration Management</h4><div class="tags"><span class="tag">Ansible</span></div></div>
+    <div class="sk reveal"><h4>CI/CD</h4><div class="tags"><span class="tag">Jenkins</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">Tekton</span><span class="tag">Azure DevOps</span><span class="tag">Bamboo</span></div></div>
+    <div class="sk reveal"><h4>Containers &amp; Orchestration</h4><div class="tags"><span class="tag">Docker</span><span class="tag">Docker Swarm</span><span class="tag">Kubernetes</span><span class="tag">OpenShift</span><span class="tag">Helm</span></div></div>
+    <div class="sk reveal"><h4>GitOps</h4><div class="tags"><span class="tag">Argo CD</span></div></div>
+    <div class="sk reveal"><h4>Infrastructure as Code (IaC)</h4><div class="tags"><span class="tag">Terraform</span></div></div>
+    <div class="sk reveal"><h4>Monitoring &amp; Logging</h4><div class="tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Loki</span></div></div>
+    <div class="sk reveal"><h4>DevSecOps</h4><div class="tags"><span class="tag">SonarQube</span><span class="tag">Checkmarx</span><span class="tag">Trivy</span></div></div>
+    <div class="sk reveal"><h4>Scripting</h4><div class="tags"><span class="tag">Bash</span></div></div>
+    <div class="sk reveal"><h4>Web Servers</h4><div class="tags"><span class="tag">Nginx</span><span class="tag">IIS</span></div></div>
+    <div class="sk reveal"><h4>Version Control</h4><div class="tags"><span class="tag">Git</span></div></div>
+    <div class="sk reveal"><h4>Networking</h4><div class="tags"><span class="tag">CCNA</span></div></div>
   </div>
 </div></section>
 
@@ -233,9 +290,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 36px}
   <h2>Experience</h2>
   <div class="tl">
     <div class="item reveal"><h3>DevOps & Infrastructure Engineer · Sword</h3><div class="meta">Feb 2026 – Present</div>
-      <ul><li>Deliver Adaa, SFD and PMS to UAE government clients (EHS, Sharjah Finance Department, Ajman DODA, Ministry of Economy)</li><li>Own company AWS & Azure infrastructure and GitHub Actions CI/CD</li><li>Lead DevSecOps scanning, cloud cost optimization and M365 / Entra ID administration</li></ul></div>
+      <ul><li>Deliver Adaa, SFD and PMS to UAE government clients: EHS, Ministry of Economy, Fujairah Police, Sharjah Finance Department, Ajman Ports &amp; Customs, DODA Ajman and SMC</li><li>Own company AWS & Azure infrastructure and GitHub Actions CI/CD</li><li>Lead DevSecOps scanning, cloud cost optimization and M365 / Entra ID administration</li></ul></div>
     <div class="item reveal"><h3>DevOps Engineer · Inspire for Solutions Development</h3><div class="meta">Dec 2024 – Jan 2026</div>
-      <ul><li>GitOps platform for Egyptian Banks Company, Azure DevOps pipelines for GIG Insurance, and zero-touch OpenShift releases for NXT Bank</li></ul></div>
+      <ul><li>OpenShift GitOps platform for Egyptian Banks Company, Azure DevOps pipelines for GIG Insurance, and zero-touch OpenShift releases for NXT Bank</li></ul></div>
     <div class="item reveal" style="padding-bottom:0"><h3>B.Sc. Electronics & Communication Engineering</h3><div class="meta">Mansoura University · 2018 – 2023</div></div>
   </div>
 </div></section>
